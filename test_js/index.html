@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>Test</title>
+	<script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
+</head>
+<body>
+	<img style="width:200px;" id="coolImage" src="pig.png">
+	<button id="PikachuButton">Pikachu</button>
+	<button id="EggButton">Egg</button>
+	<script>
+		var eggBtn = document.getElementById("EggButton");
+		eggBtn.addEventListener("click",function(){
+			var coolImage = document.getElementById("coolImage");
+			coolImage.src = "egg.png";
+		});
+
+		var pigBtn = document.getElementById("PikachuButton");
+		eggBtn.addEventListener("click",function(){
+			var coolImage = document.getElementById("coolImage");
+			coolImage.src = "egg.png";
+		});
+
+		
+	</script>
+</body>
+</html>
