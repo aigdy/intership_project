@@ -89,11 +89,11 @@
 					});
 					articleLogo = _websiteLogo.src;	
 				}
-
+				return (typeof articleLogo !== 'undefined');
 			});
 
-			for (var i = 0; i < items.length; i++) {
-				var item = items[i];
+			for (var i = 0; i < filterResults.length; i++) {
+				var item = filterResults[i];
 				var sitesUse = sitesAjax;
 
 				var datefull = item.publishedDate;
@@ -157,21 +157,23 @@
 				
 
 		%>
-				<div class="list-detail-box">
-					<% if (typeof item.thumbnail === 'undefined') {
-					   } else { %>
-					   	<div class="pic-box" style="background-image: url('<%- item.thumbnail.srcSet[3].src %>');"></div>
-					<% } %>
-						<div class="list-detail-box-text">
-				   			<h3><a href="<%- item.url %>"><%= item.title %></a></h3>
-				   			<p class="date-text"><%- day %> <%- monthtext %> <%- year %></p>
-				   			<div class="line-date"></div>
-				   			<p class="description"><%- item.description %></p>
-				   			<% if (typeof item.user === 'undefined') {
-				  	 		} else { %>
-				   				<p class="post-text left-text">Posted by  <img src='<%-websiteLogo%>' height=12px; width=auto;></p> 
-				   			<% } %>
-				   		</div>
+				<div class="list-detail-box-wrapper">
+					<div class="list-detail-box">						
+						<% if (typeof item.thumbnail === 'undefined') {
+						   } else { %>
+						   	<div class="pic-box" style="background-image: url('<%- item.thumbnail.srcSet[3].src %>');"></div>
+						<% } %>
+							<div class="list-detail-box-text">
+					   			<h3><a href="<%- item.url %>"><%= item.title %></a></h3>
+					   			<p class="date-text"><%- day %> <%- monthtext %> <%- year %></p>
+					   			<div class="line-date"></div>
+					   			<p class="description"><%- item.description %></p>
+					   			<% if (typeof item.user === 'undefined') {
+					  	 		} else { %>
+					   				<p class="post-text left-text">Posted by  <img src='<%-websiteLogo%>' height=12px; width=auto;></p> 
+					   			<% } %>
+					   		</div>					   	
+					</div>
 				</div>
 			<% }; %>
 			<div class="clear-none"></div>
