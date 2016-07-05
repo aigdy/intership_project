@@ -21,7 +21,9 @@ time, mark, audio, video {
     font-weight: normal;
     /*background:transparent;*/
 }
-
+html, body {
+    height: 100%;
+}
 body {
     line-height:1;
 }
@@ -98,7 +100,7 @@ input, select {
 }
 
 body,button{
-    font-family: 'thaisans_neueregular';
+    font-family: 'SukhumvitSet-Thin';
     font-size: 18px;
     color: black;
     background-color: white;
