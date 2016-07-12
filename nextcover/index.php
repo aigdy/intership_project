@@ -13,7 +13,7 @@
 		function petch(x){
 			var myElement = 3;
 			for (var i = 0; i <= x.length; i++) {
-				console.log(i);
+				// console.log(i);
 	    		if (x[i] == myElement) x.splice(i, 1);
 			}
 			// console.log(x);
@@ -119,6 +119,62 @@
 	<script type="text/javascript">
 		// <p class="date-text"><%- day %> <%- monthtext %> <%- year %></p>
 	</script>
+	<script type="foo/bar" id='template1'>
+		<div class="layout-1">
+			<div class="layout-1-left">
+				<div class="tag-head">
+					<img src="http://touchedition.s3.amazonaws.com/asset/56b85d9fc082b5d163cfe87b.png" height="20px;" width="auto;">
+				</div>
+			</div>
+			<div class="layout-1-right">
+				<div class="layout-1-right-head-text"><a href="#">LOVE OUT LOUD</a></div>
+				<div class="line-head"></div>
+				<div class="layout-1-right-description">Fashion Show ชุดวิวาห์ โดย Teerak Wedding Studio ซึ่งมาออกบูทในงาน Love Out Loud Wedding Fair @ Ah Yat Convention Hall ถนนสาทร โดยในงานมีการเดินแบบจากนักแสดงจาก IPM, Maxim และนางแบบหน้าใหม่ ที่ผ่าน...
+				</div>
+			</div>
+			<div class="clear-none"></div>
+		</div>
+	</script>
+
+	<script type="foo/bar" id='template2'>
+		<div class="layout-2">
+			<div class="layout-2-sublayer">
+				<div class="layout-outline">
+					<div class="layout-outline-pic">
+						<div class="tag-head-colum2">
+							<img src="http://touchedition.s3.amazonaws.com/asset/56b85d9fc082b5d163cfe87b.png" height="20px;" width="auto;">
+							<div class="layout-2-sublayer-head-text">MT'16 - ACTION QUEEN</div>
+							<div class="layout-2-line-head"></div>
+							<div class="layout-2-description">เปิดตัวแล้วกับปรากฏการณ์ครั้งใหม่ สำหรับเวทีการประกวดนางสาวไทยในรูปแบบใหม่กับรายการ “นางสาวไทย เดอะเรียลลิตี้” รายการที่พิสูจน์ความรู้ความสามารถของเหล่าสาวงามผู้เข้าประกวดนางสาวไทย 2559 กับชาเล้นจ์แรก
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="layout-2-sublayer">
+				<div class="layout-outline">
+				<% var url='http://touchedition.s3.amazonaws.com/asset/577ddbc657c82e18000212b4-d.png' %>
+					<div class="layout-outline-pic" style="background-image:url(<%-url%>)">
+						<div class="tag-head-colum2">
+							<img src="http://touchedition.s3.amazonaws.com/asset/56b85d9fc082b5d163cfe87b.png" height="20px;" width="auto;">
+							<div class="layout-2-sublayer-head-text">MT'16 - ACTION QUEEN</div>
+							<div class="layout-2-line-head"></div>
+							<div class="layout-2-description">เปิดตัวแล้วกับปรากฏการณ์ครั้งใหม่ สำหรับเวทีการประกวดนางสาวไทยในรูปแบบใหม่กับรายการ “นางสาวไทย เดอะเรียลลิตี้” รายการที่พิสูจน์ความรู้ความสามารถของเหล่าสาวงามผู้เข้าประกวดนางสาวไทย 2559 กับชาเล้นจ์แรก
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="clear-none"></div>
+		</div>
+	</script>
+
+	<script type="foo/bar" id='template6'>
+		<div style="width:100%; text-align:center; font-size:40px; margin:100px 0; color:red; font-weight:700;">6 ช่องนะจ้ะๆ</div>
+	</script>
+
 	<script type="foo/bar" id='detailList'>
 	<%
 		// var monthText = ["January", "February", "March"];
@@ -349,19 +405,25 @@
 					       				loadMore(date,month,year);
 					       			}else if(typeof articlesGroupByDate[renderIndex] !== 'undefined'){
 					       				isLoading = false;
-					       				// Render          
+					       				// Render         
+					       				var articlesForNewFunction = []; 
 					       				while(articlesGroupByDate[renderIndex]){
-										  	var templateString = $("#detailList").html();
-										  	var nextcoverTemplateFunction = _.template(templateString);						  	
-										  	var templateResult = nextcoverTemplateFunction({ 
-										  		items:articlesGroupByDate[renderIndex].articles, 
-										  		sitesAjax:tabletotal,
-										  		date:articlesGroupByDate[renderIndex].date,
-										  		month:articlesGroupByDate[renderIndex].month,
-										  		year:articlesGroupByDate[renderIndex].year
-										  	});
-										  	$(".detail-box-all").append(templateResult);
+					       					// var templateId = "#detailList";
+										  	// var templateString = $(templateId).html();
+										  	// var nextcoverTemplateFunction = _.template(templateString);			
+										  	articlesForNewFunction = articlesForNewFunction.concat(articlesGroupByDate[renderIndex].articles);
+										  	// var templateResult = nextcoverTemplateFunction({ 
+										  	// 	items:articlesGroupByDate[renderIndex].articles, 
+										  	// 	sitesAjax:tabletotal,
+										  	// 	date:articlesGroupByDate[renderIndex].date,
+										  	// 	month:articlesGroupByDate[renderIndex].month,
+										  	// 	year:articlesGroupByDate[renderIndex].year
+										  	// });
+										  	// $(".detail-box-all").append(templateResult);
 										  	renderIndex++;
+										  	if(!articlesGroupByDate[renderIndex]){
+										  		break;
+										  	}
 										  	if(articlesGroupByDate[renderIndex].date === dateForLoadMore &&
 										  		articlesGroupByDate[renderIndex].month === monthForLoadMore &&
 										  		articlesGroupByDate[renderIndex].year === yearForLoadMore){
@@ -369,6 +431,111 @@
 										  	}					
 					       					
 					       				}
+					       				console.log(articlesGroupByDate);
+					       				console.log(articlesForNewFunction);
+					       				drawSlideFromList(articlesGroupByDate);
+					       				function drawSlideFromList(articlesGroupByDate) {
+											// 1) split slide by date
+											// var listSlideByDate = splitListSlideByDate(listSlide);
+
+											// 2) draw slide from the same date
+											for (var i = 0; i < articlesGroupByDate.length; i++) {
+												var date = articlesGroupByDate[i].dateObject;
+												var listSlideThatDay = articlesGroupByDate[i].articles;
+												drawSlideByDate(date, listSlideThatDay);
+											}
+
+											function drawSlideByDate(date, listSlideThatDay) {
+												// 1) draw date header
+												// 1.1) Do we need to draw header? Did we draw it?
+
+												// 2) split slide into section and select sectionTemplate
+												var slideCount = listSlideThatDay.length;
+
+												// var divideResult = Math.floor(slideCount / 6);
+												// var modResult = slideCount % 6;
+												// drawSection(template6, listSlideThatDay)
+
+												// var modResult;
+												// var divideResult = slideCount;
+												var index = 0;
+
+												var template1 = {
+													slideCount: 1,
+													actualTemplate: "1",
+													templateId:"#template1"
+												};
+												var template2 = {
+													slideCount: 2,
+													actualTemplate: "2",
+													templateId:"#template2"
+												};
+												var template6 = {
+													slideCount: 6,
+													actualTemplate: "6",
+													templateId:"#template6"
+												};
+
+												var listTemplate = [
+													{
+														slideCount: 9,
+														templateCombo: [template1, template2, template6]
+													},
+													{
+														slideCount: 3,
+														templateCombo: [template1, template2]
+													},
+													{
+														slideCount: 6,
+														templateCombo: [template6]
+													},
+													{
+														slideCount: 2,
+														templateCombo: [template2]
+													},
+													{
+														slideCount: 1,
+														templateCombo: [template1]
+													}
+												];
+
+												var templateCount = listTemplate.length;
+
+												while (index < listSlideThatDay.length) {
+													for (var i = 0; i < templateCount; i++) {
+														if ((listSlideThatDay.length - index) >= listTemplate[i].slideCount) {
+															var templateCombo = listTemplate[i].templateCombo;
+															for (var j = 0; j < templateCombo.length; j++) {
+																drawSection(templateCombo[j], listSlideThatDay, index);
+																index += templateCombo[j].slideCount;
+															};			
+														}
+													}
+												}
+											}
+
+											function drawSection(sectionTemplate, listSlideThatDay, index) {
+												var slideCount = sectionTemplate.slideCount;
+												var actualTemplate = sectionTemplate.actualTemplate;
+												var templateId = sectionTemplate.templateId;
+												var articlesNews = listSlideThatDay;
+												// console.log(sectionTemplate);
+
+												//draw
+												console.log(templateId);
+											  	var templateString = $(templateId).html();
+											  	var nextcoverTemplateFunction = _.template(templateString);
+											  	var templateResult = nextcoverTemplateFunction({ 
+											  		items:articlesNews
+											  		// sitesAjax:tabletotal,
+											  		// date:articlesNews.date,
+											  		// month:articlesNews.month,
+											  		// year:articlesNews.year
+											  	});
+											  	$(".detail-box-all").append(templateResult);
+											}
+
+										}
 					       								  	
 					       			}
 				       				
