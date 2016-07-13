@@ -282,20 +282,11 @@
 				}
 				return (typeof articleLogo !== 'undefined');
 			});
-
+			console.log(website);
 			for (var i = 0; i < filterResults.length; i++) {
 				var item = filterResults[i];
 				var sitesUse = sitesAjax;
-
-				var datefull = item.publishedDate;
-    			var year = datefull.substring(0, 4);
-    			var month = datefull.substring(5, 7);
-    			var monthtext;
     			var websiteLogo='';
-
-    			
-    			// console.log(monthtext);
-    			var day = datefull.substring(8, 10);
 
     			var website = _.find(sitesAjax, function(x){ 
 					return x._id == item.site; 
@@ -333,9 +324,9 @@
 					   			<p class="description"><%- item.description %></p>
 					   		</div>					   	
 					</div>
-					<div class="clear-none"></div>
 				</div>
 			<% }; %>
+			<div class="clear-none"></div>
 		</div>
 	</script>
 
@@ -389,7 +380,7 @@
     			var website = _.find(sitesAjax, function(x){ 
 					return x._id == item.site; 
 				});
-				console.log(website);
+				// console.log(website);
 				var urlUse = website.domainPath + item.url;
 
 				if (typeof website === 'undefined') {
