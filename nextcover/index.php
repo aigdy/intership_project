@@ -59,32 +59,32 @@
 		</div><!-- head-text-box -->
 	</header>
 
-	<div class="detail-box">
+	<!-- <div class="detail-box">
 	<div class="head-line">
 			<div class="head-line-text">
 				<p>TODAY</p>
 			</div>
-			<div class="clear-none"></div>
-	</div><!-- head-line-->
-	<div class="line-end"></div>
-
+			<div class="clear-none"></div> -->
+	<!-- </div> --><!-- head-line-->
+	<!-- <div class="line-end"></div> -->
+<!-- 
 	<div class="layout-1">
 		<div class="layout-1-left">
 			<div class="tag-head">
 				<img src="http://touchedition.s3.amazonaws.com/asset/56b85d9fc082b5d163cfe87b.png" height="20px;" width="auto;">
-			</div>
+			</div> -->
 			<!-- <img src="http://touchedition.s3.amazonaws.com/asset/577ddbc5c1e5761900660ba4-d.jpg"> -->
-		</div>
+<!-- 		</div>
 		<div class="layout-1-right">
 			<div class="layout-1-right-head-text"><a href="#">LOVE OUT LOUD</a></div>
 			<div class="line-head"></div>
 			<div class="layout-1-right-description">Fashion Show ชุดวิวาห์ โดย Teerak Wedding Studio ซึ่งมาออกบูทในงาน Love Out Loud Wedding Fair @ Ah Yat Convention Hall ถนนสาทร โดยในงานมีการเดินแบบจากนักแสดงจาก IPM, Maxim และนางแบบหน้าใหม่ ที่ผ่าน...
 			</div>
 		</div>
-		<div class="clear-none"></div>
-	</div><!-- layout-1 -->
+		<div class="clear-none"></div> -->
+	<!-- </div> --><!-- layout-1 -->
 
-	<div class="layout-2">
+	<!-- <div class="layout-2">
 		<div class="layout-2-sublayer">
 			<div class="layout-outline">
 				<div class="layout-outline-pic">
@@ -93,13 +93,13 @@
 						<div class="layout-2-sublayer-head-text">MT'16 - ACTION QUEEN</div>
 						<div class="layout-2-line-head"></div>
 						<div class="layout-2-description">เปิดตัวแล้วกับปรากฏการณ์ครั้งใหม่ สำหรับเวทีการประกวดนางสาวไทยในรูปแบบใหม่กับรายการ “นางสาวไทย เดอะเรียลลิตี้” รายการที่พิสูจน์ความรู้ความสามารถของเหล่าสาวงามผู้เข้าประกวดนางสาวไทย 2559 กับชาเล้นจ์แรก
-						</div>
-					</div><!-- tag-head -->
-				</div><!-- layout-outline-pic -->
-			</div><!-- layout-outline -->
-		</div><!-- layout-2-sublayer -->
+						</div> -->
+					<!-- </div> --><!-- tag-head -->
+				<!-- </div> --><!-- layout-outline-pic -->
+			<!-- </div> --><!-- layout-outline -->
+		<!-- </div> --><!-- layout-2-sublayer -->
 
-		<div class="layout-2-sublayer">
+		<!-- <div class="layout-2-sublayer">
 			<div class="layout-outline">
 				<div class="layout-outline-pic" style="background-image:url('http://touchedition.s3.amazonaws.com/asset/577ddbc657c82e18000212b4-d.png')">
 					<div class="tag-head-colum2">
@@ -107,120 +107,239 @@
 						<div class="layout-2-sublayer-head-text">MT'16 - ACTION QUEEN</div>
 						<div class="layout-2-line-head"></div>
 						<div class="layout-2-description">เปิดตัวแล้วกับปรากฏการณ์ครั้งใหม่ สำหรับเวทีการประกวดนางสาวไทยในรูปแบบใหม่กับรายการ “นางสาวไทย เดอะเรียลลิตี้” รายการที่พิสูจน์ความรู้ความสามารถของเหล่าสาวงามผู้เข้าประกวดนางสาวไทย 2559 กับชาเล้นจ์แรก
-						</div>
-					</div><!-- tag-head -->
-				</div><!-- layout-outline-pic -->
-			</div><!-- layout-outline -->
-		</div><!-- layout-2-sublayer -->
+						</div> -->
+					<!-- </div> --><!-- tag-head -->
+				<!-- </div> --><!-- layout-outline-pic -->
+			<!-- </div> --><!-- layout-outline -->
+		<!-- </div> --><!-- layout-2-sublayer -->
 
-		<div class="clear-none"></div>
-	</div><!-- layout-2-->
+		<!-- <div class="clear-none"></div> -->
+	<!-- </div> --><!-- layout-2-->
 
-	<script type="text/javascript">
-		// <p class="date-text"><%- day %> <%- monthtext %> <%- year %></p>
+
+	<script type="foo/bar" id='dateHeader'>		
+		<div class="head-line">
+				<div class="head-line-text">
+					<p><%-dateObject.toLocaleDateString(undefined,{month: 'long', day: 'numeric' })%></p>
+				</div>
+				<div class="clear-none"></div>
+		</div>
+		<div class="line-end"></div>
 	</script>
+
+
 	<script type="foo/bar" id='template1'>
+	<div class="clear-none"></div>
+	<%	
+		var filterResults = _.filter(items,function(item){				
+				var articleLogo;
+				// console.log(item);
+				// console.log(sitesAjax);
+				var website = _.find(sitesAjax, function(x){ 
+					return x._id == item.site; 
+				});
+
+				if (typeof website === 'undefined') {
+
+				} else {
+					var _websiteLogo = _.find(website.assets, function(logo){ 
+						return logo.key == "logo-dark"; 
+					});
+					articleLogo = _websiteLogo.src;	
+				}
+				return (typeof articleLogo !== 'undefined');
+			});
+
+			for (var x = 0; x < filterResults.length; x++) {
+				var item = filterResults[x];
+				var sitesUse = sitesAjax;
+    			var websiteLogo='';
+
+    			var website = _.find(sitesAjax, function(x){ 
+					return x._id == item.site; 
+				});
+				console.log(website);
+				var urlUse = website.domainPath + item.url;
+
+				if (typeof website === 'undefined') {
+
+				} else {
+					websiteLogo = _.find(website.assets, function(logo){ 
+						return logo.key == "logo-dark"; 
+					});
+					websiteLogo = websiteLogo.src;	
+				}
+	%>
 		<div class="layout-1">
-			<div class="layout-1-left">
-				<div class="tag-head">
-					<img src="http://touchedition.s3.amazonaws.com/asset/56b85d9fc082b5d163cfe87b.png" height="20px;" width="auto;">
-				</div>
-			</div>
+				<% if (typeof item.thumbnail === 'undefined') {
+					} else { %>
+						<div class="layout-1-left" style="background-image: url('<%- item.thumbnail.srcSet[5].src %>');">
+							<div class="tag-head">
+								<% if (typeof item.user === 'undefined') {
+							 	} else { %>
+							  	<img src='<%-websiteLogo%>' height=20px; width=auto;>
+							 <% } %>
+							</div>
+						</div>
+				<% } %>
 			<div class="layout-1-right">
-				<div class="layout-1-right-head-text"><a href="#">LOVE OUT LOUD</a></div>
+				<div class="layout-1-right-head-text"><a href="www.<%- urlUse %>"><%= item.title %></a></div>
 				<div class="line-head"></div>
-				<div class="layout-1-right-description">Fashion Show ชุดวิวาห์ โดย Teerak Wedding Studio ซึ่งมาออกบูทในงาน Love Out Loud Wedding Fair @ Ah Yat Convention Hall ถนนสาทร โดยในงานมีการเดินแบบจากนักแสดงจาก IPM, Maxim และนางแบบหน้าใหม่ ที่ผ่าน...
-				</div>
+				<div class="layout-1-right-description"><%- item.description %></div>
 			</div>
 			<div class="clear-none"></div>
 		</div>
+	<%
+		}
+	%>
 	</script>
+
 
 	<script type="foo/bar" id='template2'>
 		<div class="layout-2">
-			<div class="layout-2-sublayer">
-				<div class="layout-outline">
-					<div class="layout-outline-pic">
-						<div class="tag-head-colum2">
-							<img src="http://touchedition.s3.amazonaws.com/asset/56b85d9fc082b5d163cfe87b.png" height="20px;" width="auto;">
-							<div class="layout-2-sublayer-head-text">MT'16 - ACTION QUEEN</div>
+	<%	
+		var filterResults = _.filter(items,function(item){				
+				var articleLogo;
+				var website = _.find(sitesAjax, function(x){ 
+					return x._id == item.site; 
+				});
+
+				if (typeof website === 'undefined') {
+
+				} else {
+					var _websiteLogo = _.find(website.assets, function(logo){ 
+						return logo.key == "logo-dark"; 
+					});
+					articleLogo = _websiteLogo.src;	
+				}
+				return (typeof articleLogo !== 'undefined');
+			});
+
+			for (var x = 0; x < filterResults.length; x++) {
+				var item = filterResults[x];
+				var sitesUse = sitesAjax;
+    			var websiteLogo='';
+
+    			var website = _.find(sitesAjax, function(x){ 
+					return x._id == item.site; 
+				});
+				console.log(website);
+				var urlUse = website.domainPath + item.url;
+
+				if (typeof website === 'undefined') {
+
+				} else {
+					websiteLogo = _.find(website.assets, function(logo){ 
+						return logo.key == "logo-dark"; 
+					});
+					websiteLogo = websiteLogo.src;	
+				}
+	%>			
+				<% if (typeof item.thumbnail === 'undefined') {
+					} else { %>
+				<div class="layout-2-sublayer">
+					<div class="layout-outline">
+						<div class="layout-outline-pic" style="background-image: url('<%- item.thumbnail.srcSet[4].src %>');">
+							<div class="tag-head-colum2">
+								<% if (typeof item.user === 'undefined') {
+							 	} else { %>
+							  	<img src='<%-websiteLogo%>' height=20px; width=auto;>
+							 <% } %>
+				<% } %>
+					
+							<div class="layout-2-sublayer-head-text"><a href="www.<%- urlUse %>"><%= item.title %></a></div>
 							<div class="layout-2-line-head"></div>
-							<div class="layout-2-description">เปิดตัวแล้วกับปรากฏการณ์ครั้งใหม่ สำหรับเวทีการประกวดนางสาวไทยในรูปแบบใหม่กับรายการ “นางสาวไทย เดอะเรียลลิตี้” รายการที่พิสูจน์ความรู้ความสามารถของเหล่าสาวงามผู้เข้าประกวดนางสาวไทย 2559 กับชาเล้นจ์แรก
+							<div class="layout-2-description"><%- item.description %></div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="layout-2-sublayer">
-				<div class="layout-outline">
-				<% var url='http://touchedition.s3.amazonaws.com/asset/577ddbc657c82e18000212b4-d.png' %>
-					<div class="layout-outline-pic" style="background-image:url(<%-url%>)">
-						<div class="tag-head-colum2">
-							<img src="http://touchedition.s3.amazonaws.com/asset/56b85d9fc082b5d163cfe87b.png" height="20px;" width="auto;">
-							<div class="layout-2-sublayer-head-text">MT'16 - ACTION QUEEN</div>
-							<div class="layout-2-line-head"></div>
-							<div class="layout-2-description">เปิดตัวแล้วกับปรากฏการณ์ครั้งใหม่ สำหรับเวทีการประกวดนางสาวไทยในรูปแบบใหม่กับรายการ “นางสาวไทย เดอะเรียลลิตี้” รายการที่พิสูจน์ความรู้ความสามารถของเหล่าสาวงามผู้เข้าประกวดนางสาวไทย 2559 กับชาเล้นจ์แรก
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
+	<%
+		}
+	%>
 			<div class="clear-none"></div>
 		</div>
 	</script>
 
+
 	<script type="foo/bar" id='template6'>
-		<div style="width:100%; text-align:center; font-size:40px; margin:100px 0; color:red; font-weight:700;">6 ช่องนะจ้ะๆ</div>
+		<div class="clear-none"></div>
+		<div class="layout-6">
+		<%
+			var filterResults = _.filter(items,function(item){				
+				var articleLogo;
+				var website = _.find(sitesAjax, function(x){ 
+					return x._id == item.site; 
+				});
+
+				if (typeof website === 'undefined') {
+
+				} else {
+					var _websiteLogo = _.find(website.assets, function(logo){ 
+						return logo.key == "logo-dark"; 
+					});
+					articleLogo = _websiteLogo.src;	
+				}
+				return (typeof articleLogo !== 'undefined');
+			});
+
+			for (var i = 0; i < filterResults.length; i++) {
+				var item = filterResults[i];
+				var sitesUse = sitesAjax;
+
+				var datefull = item.publishedDate;
+    			var year = datefull.substring(0, 4);
+    			var month = datefull.substring(5, 7);
+    			var monthtext;
+    			var websiteLogo='';
+
+    			
+    			// console.log(monthtext);
+    			var day = datefull.substring(8, 10);
+
+    			var website = _.find(sitesAjax, function(x){ 
+					return x._id == item.site; 
+				});
+				console.log(website);
+				var urlUse = website.domainPath + item.url;
+
+				if (typeof website === 'undefined') {
+
+				} else {
+					websiteLogo = _.find(website.assets, function(logo){ 
+						return logo.key == "logo-dark"; 
+					});
+					websiteLogo = websiteLogo.src;	
+				}
+				
+
+		%>
+				<div class="list-detail-box-wrapper">
+					<div class="list-detail-box">						
+						<% if (typeof item.thumbnail === 'undefined') {
+						   } else { %>
+						   	<div class="pic-box" style="background-image: url('<%- item.thumbnail.srcSet[3].src %>');">
+						   		<div class="head-logo">
+						   			<% if (typeof item.user === 'undefined') {
+						  	 		} else { %>
+						   				<img src='<%-websiteLogo%>' height=20px; width=auto;>
+						   			<% } %>
+						   		</div>
+						   	</div>
+						<% } %>
+							<div class="list-detail-box-text">
+					   			<h3><a href="www.<%- urlUse %>"><%= item.title %></a></h3>
+					   			<div class="line-date"></div>
+					   			<p class="description"><%- item.description %></p>
+					   		</div>					   	
+					</div>
+					<div class="clear-none"></div>
+				</div>
+			<% }; %>
+		</div>
 	</script>
 
 	<script type="foo/bar" id='detailList'>
-	<%
-		// var monthText = ["January", "February", "March"];
-		// var monthToText = function (month) {
-		// 	return monthText[month - 1];
-		// }
-
-
-
-		if (month  ==  "1") {
-    		monthtext = "January";
-    	};
-    	if (month == "2") {
-    		monthtext = "February";
-    	};
-    	if (month == "3") {
-    		monthtext = "March";
-    	};
-    	if (month == "4") {
-    		monthtext = "April";
-    	};
-    	if (month == "5") {
-    		monthtext = "May";
-    	};
-    	if (month == "6") {
-    		monthtext = "June";
-    	};
-    	if (month == "7") {
-    		monthtext = "July";
-    	};
-    	if (month == "8") {
-    		monthtext = "August";
-    	};
-    	if (month == "9") {
-    		monthtext = "September";
-    	};
-    	if (month == "10") {
-    		monthtext = "October";
-    	};
-    	if (month==="11") {
-    		monthtext = "November";
-    	};
-    	if (month==="12") {
-    		monthtext = "December";
-    	};
-    %>	
     	<div style="clear:both">
     		<div class="head-line-date">
 				<div class="head-line-date-text">
@@ -431,17 +550,21 @@
 										  	}					
 					       					
 					       				}
-					       				console.log(articlesGroupByDate);
+					       				// console.log(articlesGroupByDate);
 					       				console.log(articlesForNewFunction);
-					       				drawSlideFromList(articlesGroupByDate);
-					       				function drawSlideFromList(articlesGroupByDate) {
+
+					       				drawSlideFromList(articlesForNewFunction);
+
+					       				function drawSlideFromList(articlesForNewFunction) {
 											// 1) split slide by date
-											// var listSlideByDate = splitListSlideByDate(listSlide);
+											var listSlideByDate = splitListSlideByDate(articlesForNewFunction);
 
 											// 2) draw slide from the same date
-											for (var i = 0; i < articlesGroupByDate.length; i++) {
-												var date = articlesGroupByDate[i].dateObject;
-												var listSlideThatDay = articlesGroupByDate[i].articles;
+											for (var i = 0; i < listSlideByDate.length; i++) {
+												var date = listSlideByDate[i].dateObject;
+												var day = listSlideByDate[i].date;
+												var month = listSlideByDate[i].month;
+												var listSlideThatDay = listSlideByDate[i].articles;
 												drawSlideByDate(date, listSlideThatDay);
 											}
 
@@ -500,6 +623,8 @@
 												];
 
 												var templateCount = listTemplate.length;
+												
+												drawDateHeader(date);
 
 												while (index < listSlideThatDay.length) {
 													for (var i = 0; i < templateCount; i++) {
@@ -514,25 +639,87 @@
 												}
 											}
 
-											function drawSection(sectionTemplate, listSlideThatDay, index) {
+											function splitListSlideByDate(articlesForNewFunction) {
+												var articlesGroupByDate = [];
+												/*
+													[
+														{
+															date:
+															month:
+															year:
+															dateObject:
+															articles:
+														}
+													]
+												
+												*/
+												for (var i = 0; i < articlesForNewFunction.length; i++) {
+									       			var dateObject = new Date(articlesForNewFunction[i].publishedDate);
+									       			var date = dateObject.getDate();
+									       			var month = dateObject.getMonth()+1;
+									       			var year = dateObject.getFullYear();
+									       			
+									       			var isAlreadyPushInsideArray = false;
+									       			var foundArticleGroup = null;
+									       			for (var j = 0; j < articlesGroupByDate.length; j++) {
+									       				if(	articlesGroupByDate[j].date === date && articlesGroupByDate[j].month === month && articlesGroupByDate[j].year === year){
+								       						isAlreadyPushInsideArray = true;
+								       						foundArticleGroup = articlesGroupByDate[j];
+									       				}
+									       			}
+
+									       			if(foundArticleGroup !== null){
+									       				foundArticleGroup.articles.push(articlesForNewFunction[i]);
+									       			} else {
+									       				var newArticleGroup = {
+									       					date: date,
+									       					month: month,
+									       					year: year,
+									       					dateObject: dateObject,
+									       					articles: [articlesForNewFunction[i]]
+									       				};		       				
+									       				articlesGroupByDate.push(newArticleGroup)
+									       			}
+									       		}
+									       		return articlesGroupByDate;
+											}
+
+											function drawDateHeader(dateObject) {
+												var templateString = $("#dateHeader").html();
+												  	var nextcoverTemplateFunction = _.template(templateString);
+												  	var templateResult = nextcoverTemplateFunction({ 
+												  		dateObject:dateObject
+												  		// date:articlesNews.date,
+												  		// month:articlesNews.month,
+												  		// year:articlesNews.year
+											  		});
+											  	// }
+											  	$(".detail-box-all").append(templateResult);
+											}
+
+											function drawSection(sectionTemplate, listSlideThatDay, startIndex) {
 												var slideCount = sectionTemplate.slideCount;
 												var actualTemplate = sectionTemplate.actualTemplate;
 												var templateId = sectionTemplate.templateId;
 												var articlesNews = listSlideThatDay;
-												// console.log(sectionTemplate);
 
-												//draw
-												console.log(templateId);
-											  	var templateString = $(templateId).html();
-											  	var nextcoverTemplateFunction = _.template(templateString);
-											  	var templateResult = nextcoverTemplateFunction({ 
-											  		items:articlesNews
-											  		// sitesAjax:tabletotal,
-											  		// date:articlesNews.date,
-											  		// month:articlesNews.month,
-											  		// year:articlesNews.year
-											  	});
-											  	$(".detail-box-all").append(templateResult);
+												var arrayForSendToTemplate = [];
+
+												// console.log(index);
+												for (var z = startIndex ; z < (startIndex+slideCount); z++) {
+													arrayForSendToTemplate.push(articlesNews[z]);
+												}
+								
+													//draw
+													// console.log(index);
+													// console.log(articlesNews);
+												  	var templateString = $(templateId).html();
+												  	var nextcoverTemplateFunction = _.template(templateString);
+												  	var templateResult = nextcoverTemplateFunction({ 
+												  		items:arrayForSendToTemplate,
+												  		sitesAjax:tabletotal
+											  		});
+											  	$(".detail-box-all").append(templateResult);											  	
 											}
 
 										}

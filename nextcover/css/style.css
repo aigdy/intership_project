@@ -83,6 +83,11 @@ header{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.show-data {
+    width: 77%;
+    height: auto;
+    margin: 0 auto;
+}
 
 .logo {
     width: 100%;
@@ -257,6 +262,7 @@ h2{
 .head-line {
     width: 100%;
     height: auto;
+    margin-top: 80px;
 }
 .head-line-date {
     width: 96.4%;
@@ -431,6 +437,7 @@ h2{
     margin-right: -2%;
 }*/
 .layout-2 {
+    clear: both;
     /* width: 100%; */
     height: 360px;
     /* background-color: red; */
@@ -501,7 +508,7 @@ h2{
 }*/
 .layout-2-sublayer-head-text {
     width: auto;
-    height: 50px;
+    height: 53px;
     /* background: red; */
     padding-top: 40%;
     text-align: left;
@@ -514,8 +521,11 @@ h2{
     font-family: Roboto, sans-serif;
     word-break: break-all;
     margin-bottom: 20px;
-    line-height: 24px;
+    line-height: 28px;
     overflow: hidden;
+    color: white;
+}
+.layout-2-sublayer-head-text a{
     color: white;
 }
 .layout-2-line-head{
@@ -631,6 +641,13 @@ h2{
     clear: both;
 }
 .detail-box-all {
+    margin-left: -1em;
+    margin-right: -1em;
+}
+.layout-6 {
+    /*width: 100%; */
+    height: auto;
+    margin-bottom: 30px;
     margin-left: -1em;
     margin-right: -1em;
 }
